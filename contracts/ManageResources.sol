@@ -32,31 +32,58 @@ contract ManageResources is Owned {
     event OrganizationEnabled(uint64 organizationId);
     event OrganizationDisabled(uint64 organizationId);
 
-    function chekUserExistance(address user) private view onlyOwner returns (bool) {
-        for (uint64 index = 0; index < AvailableUsers.length; index++) {
-            if (user == AvailableUsers[index].addr) {
-                return true;
-            }
+    function chekUserExistance(address user) public view returns (bool) {
+      for (uint64 index = 0; index < AvailableUsers.length; index++) {
+        if (user == AvailableUsers[index].addr) {
+            return true;
         }
-        return false;
+      }
+      return false;
     }
 
-    function chekProductsExistance(uint64 id) private view onlyOwner returns (bool) {
-        for (uint64 index = 0; index < AvailableProducts.length; index++) {
-            if (id == AvailableProducts[index].id) {
-                return true;
-            }
+    function chekUserIsActive(address user) public view returns (bool) {
+      for (uint64 index = 0; index < AvailableUsers.length; index++) {
+        if (user == AvailableUsers[index].addr && AvailableUsers[index].active == true) {
+            return true;
         }
-        return false;
+      }
+      return false;
     }
 
-    function chekOrgExistance(uint64 id) private view onlyOwner returns (bool) {
-        for (uint64 index = 0; index < AvailableOrganizations.length; index++) {
-            if (id == AvailableOrganizations[index].id) {
-                return true;
-            }
+    function chekProductsExistance(uint64 id) public view returns (bool) {
+      for (uint64 index = 0; index < AvailableProducts.length; index++) {
+        if (id == AvailableProducts[index].id) {
+            return true;
         }
-        return false;
+      }
+      return false;
+    }
+
+    function chekProductsIsActive(uint64 id) public view returns (bool) {
+      for (uint64 index = 0; index < AvailableProducts.length; index++) {
+        if (id == AvailableProducts[index].id && AvailableProducts[index].active == true) {
+            return true;
+        }
+      }
+      return false;
+    }
+
+    function chekOrgExistance(uint64 id) public view returns (bool) {
+      for (uint64 index = 0; index < AvailableOrganizations.length; index++) {
+        if (id == AvailableOrganizations[index].id) {
+            return true;
+        }
+      }
+      return false;
+    }
+
+    function chekOrgIsActive(uint64 id) public view returns (bool) {
+      for (uint64 index = 0; index < AvailableOrganizations.length; index++) {
+        if (id == AvailableOrganizations[index].id && AvailableOrganizations[index].active == true) {
+            return true;
+        }
+      }
+      return false;
     }
 
     function addUser(address user) public onlyOwner {
