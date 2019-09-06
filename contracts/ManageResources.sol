@@ -1,6 +1,5 @@
 pragma solidity >=0.4.21 <0.6.0;
 import './Owned.sol';
-import './ArrayUtils.sol';
 
 contract ManageResources is Owned {
     struct User {
