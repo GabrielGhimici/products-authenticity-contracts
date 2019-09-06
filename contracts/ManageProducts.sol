@@ -31,6 +31,10 @@ contract ManageProducts is Owned {
   ManageResources resourcesInstance;
 
   event ProductAdded(uint64 identifier, bool valid, ProductState state);
+  event ProductionStarted(uint64 productId);
+  event ProductionFinished(uint64 productId);
+  event StartProductionStep(uint64 productId, uint64 stepId);
+  event UpdatedStepDetails(uint64 productId, uint64 stepId);
 
   constructor(address resourceAddress) public {
     resourcesInstance = ManageResources(resourceAddress);
@@ -90,14 +94,17 @@ contract ManageProducts is Owned {
 
   function startProducing(uint64 productId) public checkUser {
     productsState[productId].state = ProductState.Producing;
+    emit ProductionStarted(productId);
   }
 
   function endProducing(uint64 productId) public checkUser {
     productsState[productId].state = ProductState.Finished;
+    emit ProductionFinished(productId);
   }
 
   function updateStepStartStatus(uint64 productId, uint64 stepId) public checkUser {
     productsState[productId].steps[stepId].status = StepStatus.Valid;
+    emit StartProductionStep(productId, stepId);
   }
 
   function addStepSimpleDetails(
@@ -107,6 +114,7 @@ contract ManageProducts is Owned {
     uint timestamp
   ) public checkUser {
     productsState[productId].steps[stepId].details.push(ProductionDetail(message, 0, timestamp));
+    emit UpdatedStepDetails(productId, stepId);
   }
 
   function addStepDetails(
@@ -121,6 +129,7 @@ contract ManageProducts is Owned {
       productsState[productId].steps[stepId].status = StepStatus.Invalid;
     }
     updateProductStatus(productId);
+    emit UpdatedStepDetails(productId, stepId);
   }
 
   function updateProductStatus(uint64 productId) private {
