@@ -1,3 +1,4 @@
+.idea/*
 build/*
 truffle_logs/*
 chain_data/*
