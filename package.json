@@ -1,0 +1,26 @@
+{
+  "name": "products-authenticity-contracts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GabrielGhimici/products-authenticity-contracts.git"
+  },
+  "author": "Gabriel Ghimici",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GabrielGhimici/products-authenticity-contracts/issues"
+  },
+  "homepage": "https://github.com/GabrielGhimici/products-authenticity-contracts#readme",
+  "dependencies": {
+    "dotenv": "^8.1.0",
+    "mysql": "^2.17.1"
+  }
+}
