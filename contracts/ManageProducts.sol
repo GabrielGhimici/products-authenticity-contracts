@@ -52,7 +52,7 @@ contract ManageProducts is Owned {
     productsState[productId].state = ProductState.InQueue;
     for (uint64 i = 0; i < stepIds.length; i++) {
       productsState[productId].steps[stepIds[i]].identifier = stepIds[i];
-      productsState[productId].steps[stepIds[i]].status = StepStatus.Indefinite;
+      productsState[productId].steps[stepIds[i]].status = StepStatus.Invalid;
       productsState[productId].steps[stepIds[i]].details.push(ProductionDetail("Step created", 0, timestamp));
       productsState[productId].stepIdList.push(stepIds[i]);
     }
